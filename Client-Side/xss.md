@@ -43,6 +43,10 @@ Try to type something into search bar, and check the code
 
 Exploit function `encodeURIComponent` with this [post](https://security.stackexchange.com/questions/66252/encodeuricomponent-in-a-unquoted-html-attribute). Unquoted attributes can be broken out of with many characters, including `[space] % * + , - / ; < = > ^ and |`. The final payload `'/alert()/'`.
 
+[Lab 12](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-dom-xss-reflected)
+
+Description of this lab: create an injection that calls the alert() function with vulnerabilities occur when the server-side application processes data from a request and echoes the data in the response
+
 ## Stored XSS
 
 Get detail at [here](https://portswigger.net/web-security/cross-site-scripting/stored)
@@ -179,6 +183,13 @@ The code after use payload
     ...
 ```
 
+[Lab 11](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-angularjs-expression)
+
+Description of this lab: perform a cross-site scripting attack that executes an AngularJS expression and calls the alert function.
+
+Check cheatsheet at [here](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/XSS%20Injection/XSS%20in%20Angular.md)
+
+The final payload `{{constructor.constructor('alert(1)')()}}` (meaning: render value in `{{ }}`, and value is contructor), type this payload into search bar and hit enter then solved the lab.
 
 
 
