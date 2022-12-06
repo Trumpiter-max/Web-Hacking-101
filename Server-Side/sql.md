@@ -12,6 +12,8 @@ Type of SQL injection in example
 - [UNION attacks](#union-attacks)
 - [Blind SQL injection](#blind-sql-injection)
 
+---
+
 ## Retrieving hidden data
 
 Modify an SQL query to return additional results
