@@ -19,4 +19,11 @@ Note: order of labs in this repo is the order of all labs on the above page.
   - Client Side
     - [Cross-site scripting](Client-Side/xss.md)
     - [Cross-site request forgery](Client-Side/csrf.md)
+    - [Cross-origin resource sharing (CORS)](Client-Side/cors.md)
+    - [Clickjacking (UI redressing)](Client-Side/clickjacking.md)
+    - [DOM-based vulnerabilities](Client-Side/dombased.md)
+    - [Testing for Web Sockets security vulnerabilities](Client-Side/websockets.md)
+  - Advanced topics
+    - [Insecure deserialization](Advanced-topics/deserialization.md)
+    - [Server-side template injection](Advanced-topics/ssti.md)
 
