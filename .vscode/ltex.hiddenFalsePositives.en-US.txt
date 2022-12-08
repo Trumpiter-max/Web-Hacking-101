@@ -1,0 +1,1 @@
+{"rule":"DID_FOUND_AMBIGUOUS","sentence":"^\\QFinding in cheat sheet with keyword \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, we can found \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (meaning: trigger when load error).\\E$"}

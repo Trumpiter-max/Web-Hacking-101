@@ -1,4 +1,4 @@
-# Testing for WebSockets security vulnerabilities
+# Testing for Web Sockets security vulnerabilities
 
 Details at [here](https://portswigger.net/web-security/websockets)
 
