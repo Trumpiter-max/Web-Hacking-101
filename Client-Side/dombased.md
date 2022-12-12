@@ -4,6 +4,13 @@ Get details at [here](https://portswigger.net/web-security/dom-based)
 
 ---
 
+[Lab 1]()
+
+[Lab 2](https://portswigger.net/web-security/dom-based/controlling-the-web-message-source/lab-dom-xss-using-web-messages-and-a-javascript-url)
+
+Description of this lab: demonstrates a DOM-based redirection vulnerability that is triggered by web messaging
+
+
 [Lab 3](https://portswigger.net/web-security/dom-based/controlling-the-web-message-source/lab-dom-xss-using-web-messages-and-json-parse)
 
 Description of this lab: construct an HTML page on the exploit server that exploits this vulnerability and calls the print() function

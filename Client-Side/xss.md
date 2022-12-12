@@ -63,6 +63,37 @@ Description of this lab: To solve this lab, submit a comment that calls the aler
 
 We can use same technique of **lab 5**. Post a comment with `javascript:alert()` in website field, then solve the lab.
 
+[Lab 14](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-dom-xss-stored)
+
+Description of this lab: exploit this vulnerability to call the alert() function. 
+
+Check the source code, we can see that the website includes script named `loadCommentsWithVulnerableEscapeHtml.js`
+
+```js
+    function loadComments(postCommentPath) {
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let comments = JSON.parse(this.responseText);
+                displayComments(comments);
+            }
+        };
+        xhr.open("GET", postCommentPath + window.location.search);
+        xhr.send();
+
+        function escapeHTML(html) {
+            return html.replace('<', '&lt;').replace('>', '&gt;');
+        }
+
+        function displayComments(comments) {
+            let userComments = document.getElement
+            ...
+        }
+    }
+```
+
+It has function `escapeHTML` using `replace()` to prevent XSS attack, we need to bypass this with this payload `<><img src=1 onerror=alert()>` which trigger alert when reloading page. Fill this payload into content of comment box, then solved the lab.
+
 ## DOM-based XSS
 
 Get detail at [here](https://portswigger.net/web-security/cross-site-scripting/dom-based)

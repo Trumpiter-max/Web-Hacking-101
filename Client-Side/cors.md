@@ -28,7 +28,11 @@ Use this script in exploit server body, click store and view exploit to check ev
 
 We can find a request like this `GET /log?key={%20%20%22username%22:%20%22administrator%22,%20%20%22email%22:%20%22%22,%20%20%22apikey%22:%20%22ppangVtseLowbvHNDQTQGwasciL3jlOz%22,%20%20%22sessions%22:%20[%20%20%20%20%22qJ0YDt5Fc25rXs625eXPcWIU5RTujr4r%22%20%20]} HTTP/1.1" 200 "User-Agent: Mozilla/5.0 (Victim) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.5359.71 Safari/537.36"` and answer is ppangVtseLowbvHNDQTQGwasciL3jlOz (after apikey). Go back home and submit, then solved the lab.
 
-[Lab 2](#)
+[Lab 2](https://portswigger.net/web-security/cors/lab-null-origin-whitelisted-attack)
+
+Description of this lab: this website has an insecure CORS configuration in that it trusts the "null" origin.
+
+
 
 [Lab 3](https://portswigger.net/web-security/cors/lab-breaking-https-attack)
 

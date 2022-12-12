@@ -14,9 +14,11 @@ This lab includes Live chat function. We need to send this HTML code `<img src=1
 
 This lab has same description of previous lab, but we need to exploit handshake. 
 
-In fact, we can do it same as lab 1 and modify payload like this, also payload should be obfuscated:
+Try to use same technique in lab 1, and our IP address will be banned. So we need to reset this lab instance or using some other methods for changing IP address like using flag `X-Forwarded-For` in HTTP header.
 
-```
+In fact, we can do it same as lab 1, but we need to modify payload like this, also payload should be obfuscated:
+
+```json
     {"message":"<img src=1 oNeRrOr=alert`1`>"}
     {"user":"You","content":"<img src=1 oNeRrOr=alert`1`>"}
 ``` 
