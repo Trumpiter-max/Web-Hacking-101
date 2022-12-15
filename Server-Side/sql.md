@@ -27,7 +27,7 @@ Type of SQL injection attack:
 
 Modify an SQL query to return additional results
 
-[Lab 1](https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data)
+[Lab 1](https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data): retrieve hidden data
 
 Description of this lab: the query of 1 category `Gifts`
 
@@ -42,7 +42,7 @@ Goal: display details of all products in any category, both *released and unrele
 We just only adjust in `category=` and put into `''`, so the final payload:
 `' or '1'='1` or `https://example.com/filter?category=%27%20or%20%271%27or%271` 
 
-[Lab 2](https://portswigger.net/web-security/sql-injection/lab-login-bypass)
+[Lab 2](https://portswigger.net/web-security/sql-injection/lab-login-bypass): login bypass
 
 Description of this lab: inject in login page as username: administrator
 
@@ -54,7 +54,7 @@ Detail found at [here](https://portswigger.net/web-security/sql-injection/union-
 
 See cheat sheet [here](https://portswigger.net/web-security/sql-injection/cheat-sheet)
 
-[Lab 3](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns)
+[Lab 3](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns): determine number of columns
 
 Description of this lab: vulnerability in the product category filter, use a UNION attack to retrieve data from other tables
 
@@ -62,13 +62,13 @@ Firstly, we need to identify the number of columns in the table, and use payload
 
 Finally, we use `' UNION SELECT NULL, NULL, NULL--` to make a union attack at `/filter?category=` then solved this challenge.
 
-[Lab 4](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text)
+[Lab 4](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text): find column containing text
 
 Description of this lab: You can do this using a technique you learned in a previous lab. The next step is to identify a column that is compatible with string data. After that, alter NULL to random text on the homepage, for example: 'qG26iL'
 
 Do as same as the previous one with `' UNION SELECT NULL, NULL, NULL--`. After trying, the final payload is `' UNION SELECT NULL, 'qG26iL', NULL--`
 
-[Lab 5](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables)
+[Lab 5](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables): retrieve data from other tables
 
 Description of this lab: The database contains a different table called users, with columns called username and password
 
@@ -78,7 +78,7 @@ Do the same as the previous one with `' UNION SELECT NULL, NULL--`. Follow the d
 
 Login with the password of user `administrator`: nq3glruptcrilo0yscf6 and solved the lab.  
 
-[Lab 6](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)
+[Lab 6](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column): retrieve multiple values in single column
 
 This lab has the same description as the previous one, but we need to retrieve multiple values in a single column. Furthermore, in this lab, we can use only the second column.
 
@@ -86,20 +86,20 @@ Look at the cheat sheet, we can use the string concatenation technique. After tr
 
 Login with the password of user `administrator`: 532codf0er823llefy7x and solved the lab. 
 
-[Lab 7](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle)
+[Lab 7](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle): querying database version (Oracle)
 
 Description of this lab: display the database version string of Oracle
 
 In this lab, the available number of columns is 2. Look at the cheat sheet, try with: `SELECT banner FROM v$version` and the final payload is: `' UNION SELECT banner, NULL FROM v$version--`, then solved the lab.
 
-[Lab 8](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft)
+[Lab 8](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft): querying database version (MySQL and Microsoft)
 
 This lab has the same description as the previous one, but for MySQL and Microsoft.
 
 The final payload is `' UNION SELECT @@version, NULL#`, we will change `v$version` to `@@version`, `--` to `#`, then solved the lab.
 
 
-[Lab 9](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-non-oracle)
+[Lab 9](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-non-oracle): listing database contents (non-Oracle)
 
 Description of this lab: You need to determine the name of this table and the columns it contains, then retrieve the contents of the table to obtain the username and password of all users.
 
@@ -109,7 +109,7 @@ Check the cheat sheet, found database contents with PostgreSQL using `' UNION SE
 
 The final payload is `' UNION SELECT username_ivoiag, password_vxgmam FROM users_ahngdj--`, the password of administrator is l9jw2he0g1jr5zzndr3o. Login with this password, then solved the lab.
 
-[Lab 10](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-oracle)
+[Lab 10](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-oracle): listing database contents (Oracle)
 
 This lab has the same description as the previous one, but for oracle.
 
@@ -119,7 +119,7 @@ The final payload is: `' UNION SELECT USERNAME_ETTQUM, PASSWORD_EVVZCC FROM USER
 
 ## Blind SQL injection 
 
-[Lab 11](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-responses)
+[Lab 11](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-responses): conditional responses
 
 Description of this lab: The results of the SQL query are not returned, and no error messages are displayed. But the application includes a **Welcome back** message in the page if the query returns any rows. The application uses a tracking **cookie** for analytics, and performs an SQL query containing the value of the submitted cookie.   
 
@@ -138,17 +138,17 @@ Guess first character
 
 Using this [script](/Scripts/brutecondition.py) to guess, then write answer for per attack. After 20 trial, we will get password is `s4ykqo9mvgpqisgnzv9t`. Log in with this password and solved the lab.
 
-[Lab 12](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-errors)
+[Lab 12](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-errors): conditional errors
 
 
 
-[Lab 13](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays)
+[Lab 13](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays): time delays
 
 Description of this lab: exploit the SQL injection vulnerability to cause a 10 seconds delay.
 
 Using payload similar `Cookie: TrackingId=nTjOlcnGoesLH7fd+'or+pg_sleep(10)--; session=8BYemkFDFxWMOkX21X7uPWmJ0P1fAYRl` to sleep in 10 second, then solved the lab.
 
-[Lab 14](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays-info-retrieval)
+[Lab 14](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays-info-retrieval): time delays (information retrieval)
 
 
 

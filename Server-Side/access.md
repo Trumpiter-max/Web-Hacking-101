@@ -17,7 +17,7 @@ Type of access control attack:
 
 ---
 
-[Lab 1](https://portswigger.net/web-security/access-control/lab-unprotected-admin-functionality)
+[Lab 1](https://portswigger.net/web-security/access-control/lab-unprotected-admin-functionality): Unprotected admin functionality
 
 Description of this lab: delete the user carlos
 
@@ -30,7 +30,7 @@ There are no hints in code, so we will find hidden files, we found `robots.txt` 
 
 Modifying URL to go to /administrator-panel and delete carlos, then solved the lab.
 
-[Lab 12](https://portswigger.net/web-security/access-control/lab-multi-step-process-with-no-access-control-on-one-step)
+[Lab 12](https://portswigger.net/web-security/access-control/lab-multi-step-process-with-no-access-control-on-one-step): Multi-step process with no access control on one step
 
 Description of this lab: log in using the credentials `wiener:peter` and exploit the flawed access controls to promote yourself to become an administrator, and we can log in the credentials' administrator:admin
 

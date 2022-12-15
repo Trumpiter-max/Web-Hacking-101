@@ -13,19 +13,19 @@ Type of XSS attack in example:
 
 Get detail at [here](https://portswigger.net/web-security/cross-site-scripting/reflected)
 
-[Lab 1](https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded)
+[Lab 1](https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded): HTML context, nothing encoded
 
 Description of this lab: perform a cross-site scripting attack that calls the alert function
 
 Typing `<script>alert()</script>` into search bar to call alert function, then solved the lab.
 
-[Lab 7](https://portswigger.net/web-security/cross-site-scripting/contexts/lab-attribute-angle-brackets-html-encoded)
+[Lab 7](https://portswigger.net/web-security/cross-site-scripting/contexts/lab-attribute-angle-brackets-html-encoded): attribute, angle brackets HTML-encoded
 
 Description of this lab: vulnerability in the search blog, injects an attribute and calls the alert function.
 
 Try to find something with search bar, and check source code, we can find `<input type="text" placeholder="Search the blog..." name="search" value="test">`. Check at [here](https://portswigger.net/support/exploiting-xss-injecting-into-tag-attributes), we will use `" onload="alert()`, but it was not worked because this tag is can not be loaded, so replace it to `onmouseover`. The final payload is `" onmouseover="alert()`, then drag mouse to search bar and solved the lab.
 
-[Lab 9](https://portswigger.net/web-security/cross-site-scripting/contexts/lab-javascript-string-angle-brackets-html-encoded)
+[Lab 9](https://portswigger.net/web-security/cross-site-scripting/contexts/lab-javascript-string-angle-brackets-html-encoded): JavaScript string, angle brackets HTML-encoded
 
 Description of this lab: To solve this lab, perform a cross-site scripting attack that breaks out of the JavaScript string and calls the alert function in the search query tracking functionality.
 
@@ -43,7 +43,7 @@ Try to type something into search bar, and check the code
 
 Exploit function `encodeURIComponent` with this [post](https://security.stackexchange.com/questions/66252/encodeuricomponent-in-a-unquoted-html-attribute). Unquoted attributes can be broken out of with many characters, including `[space] % * + , - / ; < = > ^ and |`. The final payload `'/alert()/'`.
 
-[Lab 12](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-dom-xss-reflected)
+[Lab 12](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-dom-xss-reflected): DOM-based XSS, reflected
 
 Description of this lab: create an injection that calls the alert() function with vulnerabilities occur when the server-side application processes data from a request and echoes the data in the response
 
@@ -51,19 +51,19 @@ Description of this lab: create an injection that calls the alert() function wit
 
 Get detail at [here](https://portswigger.net/web-security/cross-site-scripting/stored)
 
-[Lab 2](https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded)
+[Lab 2](https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded): HTML context, nothing encoded, stored
 
 Description of this lab: submit a comment that calls the alert function when the blog post is viewed.
 
 Type `<script>alert()</script>` into content of comment box at any post, then solved the lab.
 
-[Lab 8](https://portswigger.net/web-security/cross-site-scripting/contexts/lab-href-attribute-double-quotes-html-encoded)
+[Lab 8](https://portswigger.net/web-security/cross-site-scripting/contexts/lab-href-attribute-double-quotes-html-encoded): href attribute, double quotes HTML-encoded
 
 Description of this lab: To solve this lab, submit a comment that calls the alert function when the comment author name is clicked (when user have own website).
 
 We can use same technique of **lab 5**. Post a comment with `javascript:alert()` in website field, then solve the lab.
 
-[Lab 14](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-dom-xss-stored)
+[Lab 14](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-dom-xss-stored): DOM-based XSS, stored
 
 Description of this lab: exploit this vulnerability to call the alert() function. 
 
@@ -98,7 +98,7 @@ It has function `escapeHTML` using `replace()` to prevent XSS attack, we need to
 
 Get detail at [here](https://portswigger.net/web-security/cross-site-scripting/dom-based)
 
-[Lab 3](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-document-write-sink)
+[Lab 3](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-document-write-sink): document.write sink
 
 Description of this lab: perform a cross-site scripting attack that calls the alert function using `document.write`
 
@@ -117,9 +117,9 @@ Check how website work, look at the source:
 
 We use `document.write` to insert plain HTML into the DOM (which opens the door for DOM XSS attacks). Moreover, if query is successful, website will load svg image. Type `"><svg onload=alert()>` (it will be triggered when svg load) into search bar, then solved the lab.
 
-[Lab 4](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-innerhtml-sink)
+[Lab 4](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-innerhtml-sink): innerHTML sink
 
-This lab has the same description as the previous one but using innerHTML
+This lab has the same description as the previous one but using `innerHTML`
 
 Check how website work, look at the source:
 ```js
@@ -157,7 +157,7 @@ After we insert payload, it becomes:
 
 Type this one into search bar and solved the lab.
 
-[Lab 5](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-jquery-href-attribute-sink)
+[Lab 5](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-jquery-href-attribute-sink): jQuery href attribute sink
 
 Description of this lab: make the "back" link alert document.cookie using anchor href attribute
 
@@ -171,13 +171,13 @@ In this lab, website includes submit feedback, when try to submit form, URL was 
 
 Check the cheat sheet, the final payload is `/feedback?returnPath=javascript:alert(document.cookie)`
 
-[Lab 6](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-jquery-selector-hash-change-event)
+[Lab 6](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-jquery-selector-hash-change-event): jQuery selector, hashchange event
 
 Description of this lab: deliver an exploit to the victim that calls the print() function in their browser.
 
 In this lab, we got exploit server, using this for sending exploit to victim. Finding in cheat sheet with keyword `print()`, we can find `<img src=x onerror=print()>` (meaning: trigger when load error). However, in this exploit server, there is no place for victim's URL, so we need to modify payload, we can mix with `iframe` and `onload`. The final payload `<iframe src="example.com/#" onload="this.src+='<img src=x onerror=print()>'"></iframe>`, send it to victim and solved the lab.
 
-[Lab 10](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-document-write-sink-inside-select-element)
+[Lab 10](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-document-write-sink-inside-select-element): document.write sink inside select element
 
 Description of this lab: perform a cross-site scripting attack that breaks out of the select element and calls the alert function in the stock checker functionality.
 
@@ -214,7 +214,7 @@ The code after use payload
     ...
 ```
 
-[Lab 11](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-angularjs-expression)
+[Lab 11](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-angularjs-expression): AngularJS expression
 
 Description of this lab: perform a cross-site scripting attack that executes an AngularJS expression and calls the alert function.
 
@@ -222,7 +222,7 @@ Check cheat sheet at [here](https://github.com/swisskyrepo/PayloadsAllTheThings/
 
 The final payload `{{constructor.constructor('alert(1)')()}}` (meaning: render value in `{{ }}`, and value is constructor), type this payload into search bar and hit enter then solved the lab.
 
-[Lab 13](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-dom-xss-reflected)
+[Lab 13](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-dom-xss-reflected): DOM XSS reflected
 
 Description of this lab: create an injection that calls the alert() function and a script on the page then processes the reflected data in an unsafe way, ultimately writing it to a dangerous sink
 
@@ -246,7 +246,7 @@ Analyze this code, we can see that this function using `eval()` - popular danger
     {"results":[],"searchTerm":"\\"-alert(1)}//"}
 ```
 
-[Lab 17](https://portswigger.net/web-security/cross-site-scripting/exploiting/lab-perform-csrf)
+[Lab 17](https://portswigger.net/web-security/cross-site-scripting/exploiting/lab-perform-csrf): Perform CSRF
 
 Description of this lab: exploit the vulnerability to perform a CSRF attack and change the email address of someone who views the blog post comments
 
@@ -270,7 +270,7 @@ Using this script in exploit server which change to email `test@example.com` for
     </script>
 ```
 
-[Lab 18](https://portswigger.net/web-security/cross-site-scripting/contexts/lab-html-context-with-most-tags-and-attributes-blocked)
+[Lab 18](https://portswigger.net/web-security/cross-site-scripting/contexts/lab-html-context-with-most-tags-and-attributes-blocked): HTML context with most tags and attributes blocked
 
 Description of this lab: perform a cross-site scripting attack that bypasses the `WAF` and calls the print() function
 

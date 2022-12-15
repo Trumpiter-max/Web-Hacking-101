@@ -4,7 +4,7 @@ Get details at [here](https://portswigger.net/web-security/information-disclosur
 
 ---
 
-[Lab 1](https://portswigger.net/web-security/information-disclosure/exploiting/lab-infoleak-in-error-messages)
+[Lab 1](https://portswigger.net/web-security/information-disclosure/exploiting/lab-infoleak-in-error-messages): Information leak in error messages
 
 Description of this lab: obtain and submit the version number of this framework
 
@@ -16,7 +16,7 @@ Go to any post and modify url with unique symbol like this `example.com/product?
 
 [Lab 4](#)
 
-[Lab 5](https://portswigger.net/web-security/information-disclosure/exploiting/lab-infoleak-in-version-control-history)
+[Lab 5](https://portswigger.net/web-security/information-disclosure/exploiting/lab-infoleak-in-version-control-history): Information leak in version control history
 
 Description of this lab: obtain the password for the administrator user then log in and delete Carlos's account, exploit version control history
 

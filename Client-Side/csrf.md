@@ -10,7 +10,7 @@ Type of attack in this example
 
 ## A relevant action
 
-[Lab 1](https://portswigger.net/web-security/csrf/lab-no-defenses)
+[Lab 1](https://portswigger.net/web-security/csrf/lab-no-defenses): no defenses
 
 Description of this lab: craft some HTML that uses a CSRF attack to change the viewer's email address and upload it to your exploit server, we can log in with credentials: `wiener:peter` and this lab's email change functionality is vulnerable to CSRF
 
@@ -29,7 +29,7 @@ Clicking store button, then verifying that the exploit works, clicking "View exp
 
 ## Cookie-based session handling
 
-[Lab 4](https://portswigger.net/web-security/csrf/lab-token-not-tied-to-user-session)
+[Lab 4](https://portswigger.net/web-security/csrf/lab-token-not-tied-to-user-session): token not tied to user session
 
 Description of this lab: use your exploit server to host an HTML page that uses a CSRF attack to change the viewer's email address, and two accounts on the application that you can use to help design your attack `wiener:peter; carlos:montoya`
 

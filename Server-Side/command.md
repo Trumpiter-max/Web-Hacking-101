@@ -10,7 +10,7 @@ Type of OS command injection attack:
 
 ---
 
-[Lab 1](https://portswigger.net/web-security/os-command-injection/lab-simple)
+[Lab 1](https://portswigger.net/web-security/os-command-injection/lab-simple): simple OS command injection
 
 Description of this lab: execute the whoami command to determine the name of the current user
 
@@ -56,7 +56,7 @@ Check the source code, we can see in JS folder having 2 files:
 
 Moreover, input (variable data) which is sent to server has no validate. Using burp suite to see what happen when clicking on button `Check stock`, website will send payload like this `productId=1&storeId=1` to server, and response of server is a number. Try to expand payload with some basic OS command injection. The final payload is `productId=1;whoami&storeId=1`, using repeater to send this to server and solved the lab.
 
-[Lab 2](https://portswigger.net/web-security/os-command-injection/lab-blind-time-delays)
+[Lab 2](https://portswigger.net/web-security/os-command-injection/lab-blind-time-delays): blind OS command injection with time delays
 
 Description of this lab: exploit the blind OS command injection vulnerability to cause a 10 second delay
 
@@ -104,7 +104,7 @@ We can exploit input with command `sleep 10` to delay 10 seconds, modify payload
 
 [Lab 3](#)
 
-[Lab 4](https://portswigger.net/web-security/os-command-injection/lab-blind-out-of-band)
+[Lab 4](https://portswigger.net/web-security/os-command-injection/lab-blind-out-of-band): blind OS command injection with out-of-band data exfiltration
 
 Description of this lab: exploit the blind OS command injection vulnerability to issue a DNS lookup to Burp Collaborator
 

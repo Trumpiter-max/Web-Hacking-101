@@ -8,7 +8,7 @@ Type of file upload vulnerabilities attack:
 
 ---
 
-[Lab 1](https://portswigger.net/web-security/file-upload/lab-file-upload-remote-code-execution-via-web-shell-upload)
+[Lab 1](https://portswigger.net/web-security/file-upload/lab-file-upload-remote-code-execution-via-web-shell-upload): File upload remote code execution via web shell upload
 
 Description of this lab: log in to your own account using the following credentials: wiener:peter, upload a basic PHP web shell and use it to exfiltrate the contents of the file /home/carlos/secret. Submit this secret using the button provided in the lab banner
 
@@ -28,7 +28,7 @@ Log in with wiener:peter, uploading evil.php at upload avatar. After uploading f
 
 [Lab 4](#)
 
-[Lab 5](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-obfuscated-file-extension)
+[Lab 5](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-obfuscated-file-extension): File upload web shell upload via obfuscated file extension
 
 Description of this lab: obfuscation technique to bypass defense (only upload JPG or PNG file)
 

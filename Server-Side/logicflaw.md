@@ -4,7 +4,7 @@ Get detail at [here](https://portswigger.net/web-security/logic-flaws)
 
 --- 
 
-[Lab 1](https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-excessive-trust-in-client-side-controls)
+[Lab 1](https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-excessive-trust-in-client-side-controls): Excessive trust in client-side controls
 
 Description of this lab: buy a "Lightweight l33t leather jacket", we can login with credentials: `wiener:peter` 
 
@@ -20,7 +20,7 @@ Firstly, we will login with above credentials, then go to home and add "Lightwei
 
 [Lab 6](#)
 
-[Lab 7](https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-weak-isolation-on-dual-use-endpoint)
+[Lab 7](https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-weak-isolation-on-dual-use-endpoint): Weak isolation on dual-use endpoint
 
 Description of this lab: access the administrator account and delete Carlos, we can login with credentials: `wiener:peter`
 

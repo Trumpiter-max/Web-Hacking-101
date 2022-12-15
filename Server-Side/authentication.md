@@ -16,7 +16,7 @@ Type of authentication attack:
 
 ---
 
-[lab 1](https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-different-responses)
+[lab 1](https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-different-responses): Username enumeration via different responses
 
 Description of this lab: numerate a valid username, brute-force this user's password, and we have list of users and password
 
@@ -30,7 +30,7 @@ Using turbo intruder extension in burp suite, try to log in then send it to turb
 
 [Lab 5](#)
 
-[Lab 6](https://portswigger.net/web-security/authentication/password-based/lab-broken-bruteforce-protection-ip-block)
+[Lab 6](https://portswigger.net/web-security/authentication/password-based/lab-broken-bruteforce-protection-ip-block): Broken bruteforce protection (IP block)
 
 Description of this lab: brute-force the victim's password with Candidate passwords, and we have credentials: `wiener:peter` and Victim's username: `carlos`
 

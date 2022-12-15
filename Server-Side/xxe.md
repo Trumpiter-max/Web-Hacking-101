@@ -6,9 +6,9 @@ XML (Extensible Markup Language) is a very popular data format. It is used in ev
 
 ---
 
-[Lab 1](https://portswigger.net/web-security/xxe/lab-exploiting-xxe-to-retrieve-files)
+[Lab 1](https://portswigger.net/web-security/xxe/lab-exploiting-xxe-to-retrieve-files): exploiting XXE to retrieve files
 
-Description of this lab: inject an XML external entity to retrieve the contents of the /etc/passwd file.
+Description of this lab: inject an XML external entity to retrieve the contents of the `/etc/passwd` file.
 
 Look at any post, it has `check stock` button, try to click, we can see website send a payload like this 
 
@@ -32,7 +32,7 @@ Send it with repeater, and solved the lab.
 
 [Lab 4]()
 
-[Lab 5](https://portswigger.net/web-security/xxe/blind/lab-xxe-with-out-of-band-exfiltration)
+[Lab 5](https://portswigger.net/web-security/xxe/blind/lab-xxe-with-out-of-band-exfiltration): XXE with out-of-band exfiltrations
 
 Description of this lab: exfiltrate the contents of the /etc/hostname file but does not display the result
 

