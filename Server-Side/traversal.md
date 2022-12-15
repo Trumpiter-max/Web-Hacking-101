@@ -23,7 +23,7 @@ Firstly, we need to find what is relative to file path, we can found at image of
     </section>
 ```
 
-Image source have parameter `?filename`, try to replace `54.jpg` to `51.jpg` with `edit attribute` or expand url like this `example.com/image?filename=51.jpg` then website will load 51.jpg. Replace it with payload `../../../etc/passwd` then solved the lab. 
+Image source have parameter `?filename`, try to replace `54.jpg` to `51.jpg` with `edit attribute` or expand URL like this `example.com/image?filename=51.jpg` then website will load 51.jpg. Replace it with payload `../../../etc/passwd` then solved the lab. 
 
 [Lab 2](#)
 
@@ -33,5 +33,5 @@ Image source have parameter `?filename`, try to replace `54.jpg` to `51.jpg` wit
 
 Description of this lab: retrieve the contents of the /etc/passwd file in the display of product images, performs a URL-decode of the input before using it
 
-It have same solution of lab 1, but we need modify payload, replace `/` to `%252f`. Final payload `..%252f..%252f..%252fetc/passwd` then solved the lab
+It has same solution of lab 1, but we need to modify payload, replace `/` to `%252f`. Final payload `..%252f..%252f..%252fetc/passwd` then solved the lab
 

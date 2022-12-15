@@ -12,6 +12,15 @@ Type of SQL injection in example
 - [UNION attacks](#union-attacks)
 - [Blind SQL injection](#blind-sql-injection)
 
+Type of SQL injection attack:
+ - In-band SQLi (data is returned to the attacker in the same HTTP response as the SQL query)
+  - Error-based SQLi: error messages returned by the web application contain sensitive data
+  - Union-based SQLi: using union query to retrieve data from other tables
+ - Inferential (Blind) SQLi (data is not returned to the attacker in the same HTTP response as the SQL query)
+  - Boolean-based SQLi: using boolean logic to infer the results of SQL queries
+  - Time-based SQLi: using time delays to infer the results of SQL queries
+ - Out-of-band SQLi (DNS or HTTP requests to transfer data to an attacker-controlled server)
+
 ---
 
 ## Retrieving hidden data
@@ -43,7 +52,7 @@ So we need to modify the password, and check the password with the previous payl
 
 Detail found at [here](https://portswigger.net/web-security/sql-injection/union-attacks)
 
-See cheatsheet [here](https://portswigger.net/web-security/sql-injection/cheat-sheet)
+See cheat sheet [here](https://portswigger.net/web-security/sql-injection/cheat-sheet)
 
 [Lab 3](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns)
 
@@ -71,9 +80,9 @@ Login with the password of user `administrator`: nq3glruptcrilo0yscf6 and solved
 
 [Lab 6](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)
 
-This lab has the same description as the previous one but we need to retrieve multiple values in a single column. Furthermore, in this lab, we can use only the second column.
+This lab has the same description as the previous one, but we need to retrieve multiple values in a single column. Furthermore, in this lab, we can use only the second column.
 
-Look at the cheatsheet, we can use the string concatenation technique. After trying, we found this lab use `||` for concatenate string. The final payload is `' UNION SELECT NULL, username||':'||password FROM users--` to get all usernames and passwords.
+Look at the cheat sheet, we can use the string concatenation technique. After trying, we found this lab use `||` for concatenate string. The final payload is `' UNION SELECT NULL, username||':'||password FROM users--` to get all usernames and passwords.
 
 Login with the password of user `administrator`: 532codf0er823llefy7x and solved the lab. 
 
@@ -81,7 +90,7 @@ Login with the password of user `administrator`: 532codf0er823llefy7x and solved
 
 Description of this lab: display the database version string of Oracle
 
-In this lab, the available number of columns is 2. Look at the cheatsheet, try with: `SELECT banner FROM v$version` and the final payload is: `' UNION SELECT banner, NULL FROM v$version--`, then solved the lab.
+In this lab, the available number of columns is 2. Look at the cheat sheet, try with: `SELECT banner FROM v$version` and the final payload is: `' UNION SELECT banner, NULL FROM v$version--`, then solved the lab.
 
 [Lab 8](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft)
 
@@ -94,9 +103,9 @@ The final payload is `' UNION SELECT @@version, NULL#`, we will change `v$versio
 
 Description of this lab: You need to determine the name of this table and the columns it contains, then retrieve the contents of the table to obtain the username and password of all users.
 
-This lab has 2 available cloumns, we need to determine the name of table first. However, determine the version of database. After trying, `' UNION SELECT version(), NULL--` worked and result is `PostgreSQL 12.12 (Ubuntu 12.12-0ubuntu0.20.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0, 64-bit`
+This lab has 2 available columns, we need to determine the name of table first. However, determine the version of database. After trying, `' UNION SELECT version(), NULL--` worked and result is `PostgreSQL 12.12 (Ubuntu 12.12-0ubuntu0.20.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0, 64-bit`
 
-Check the cheatsheet, found database contents with PostgreSQL using `' UNION SELECT table_name, NULL FROM information_schema.tables--`. So there are a lot of tables, find the column of table `' UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name = 'users_ahngdj'--`, the result is colunms names: username_ivoiag and password_vxgmam
+Check the cheat sheet, found database contents with PostgreSQL using `' UNION SELECT table_name, NULL FROM information_schema.tables--`. So there are a lot of tables, find the column of table `' UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name = 'users_ahngdj'--`, the result is columns names: username_ivoiag and password_vxgmam
 
 The final payload is `' UNION SELECT username_ivoiag, password_vxgmam FROM users_ahngdj--`, the password of administrator is l9jw2he0g1jr5zzndr3o. Login with this password, then solved the lab.
 

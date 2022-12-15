@@ -2,6 +2,8 @@
 
 Get details at [here](https://portswigger.net/web-security/xxe)
 
+XML (Extensible Markup Language) is a very popular data format. It is used in everything from web services (XML-RPC, SOAP, REST) through documents (XML, HTML, DOCX) to image files (SVG, EXIF data). To interpret XML data, an application needs an XML parser (also known as the XML processor).
+
 ---
 
 [Lab 1](https://portswigger.net/web-security/xxe/lab-exploiting-xxe-to-retrieve-files)

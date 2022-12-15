@@ -7,6 +7,7 @@ Type of attack in this example
  - [Cookie-based session handling](#cookie-based-session-handling)
  - [No unpredictable request parameters](#no-unpredictable-request-parameters)
 
+
 ## A relevant action
 
 [Lab 1](https://portswigger.net/web-security/csrf/lab-no-defenses)

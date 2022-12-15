@@ -4,9 +4,9 @@ Get details at [here](https://portswigger.net/web-security/clickjacking)
 
 ---
 
-[Lab 1](https://portswigger.net/web-security/clickjacking/lab-basic-csrf-protected)
+[Lab 1](https://portswigger.net/web-security/clickjacking/lab-basic-csrf-protected): basic csrf protected
 
-Description of this lab: login functionality and a delete account button that is protected by a CSRF token. A user will click on elements that display the word "click" on a decoy website.
+Description of this lab: login functionality and a deleted account button that is protected by a CSRF token. A user will click on elements that display the word "click" on a decoy website.
 
 We will exploit at my-account page, use this script for exploit server body:
 
@@ -14,20 +14,20 @@ We will exploit at my-account page, use this script for exploit server body:
     <html>
         <head>
         <style>
-        #target_website {
-            position:relative;
-            width: 512px;
-            height: 512px;
-            opacity:0.00001;
-            z-index:2;
+            #target_website {
+                position:relative;
+                width: 512px;
+                height: 512px;
+                opacity:0.00001;
+                z-index:2;
             }
-        #decoy_btn {
-            position:absolute;
-            top:490px;
-            width:148px;
-            height: 32px;
-            left: 25px;
-            z-index:1;
+            #decoy_btn {
+                position:absolute;
+                top:490px;
+                width:148px;
+                height: 32px;
+                left: 25px;
+                z-index:1;
             }
         </style>
     </head>
@@ -43,7 +43,7 @@ We will exploit at my-account page, use this script for exploit server body:
 
 Clicking store then deliver to victim button, and solved the lab.
 
-[Lab 2](https://portswigger.net/web-security/clickjacking/lab-prefilled-form-input)
+[Lab 2](https://portswigger.net/web-security/clickjacking/lab-prefilled-form-input): pre-filled form input
 
 Description of this lab: craft some HTML that frames the account page and fools the user into updating their email address by clicking on a "Click me" decoy. The lab is solved when the email address is changed, change the email address of the user by prepopulating a form using a URL parameter and enticing the user to inadvertently click on an "Update email" button.
 
@@ -81,7 +81,7 @@ Using this script for body part of exploit server, deliver to victim for solving
         </body>
     </html>
 ```
-[Lab 3](https://portswigger.net/web-security/clickjacking/lab-frame-buster-script)
+[Lab 3](https://portswigger.net/web-security/clickjacking/lab-frame-buster-script): frame buster script
 
 Description of this lab: craft some HTML that frames the account page and fools the user into updating their email address by clicking on a "Click me" decoy. The lab is solved when the email address is changed, get around the frame buster and conduct a clickjacking attack that changes the users email address
 
@@ -120,7 +120,7 @@ Using `sandbox="allow-forms"` in script for body part of exploit server for fram
 
 ```
 
-[Lab 4](https://portswigger.net/web-security/clickjacking/lab-exploiting-to-trigger-dom-based-xss)
+[Lab 4](https://portswigger.net/web-security/clickjacking/lab-exploiting-to-trigger-dom-based-xss): exploiting to trigger DOM-based XSS
 
 Description of this lab: XSS vulnerability that is triggered by a click. Construct a clickjacking attack that fools the user into clicking the "Click me" button to call the print() function.
 
@@ -157,7 +157,7 @@ We can find the vulnerability in feedback form where users can type anything. Us
     </html>
 ```
 
-[Lab 5](https://portswigger.net/web-security/clickjacking/lab-multistep)
+[Lab 5](https://portswigger.net/web-security/clickjacking/lab-multistep): multistep
 
 Description of this lab: solve this lab construct an attack that fools the user into clicking the delete account button and the confirmation dialog by clicking on "Click me first" and "Click me next" decoy actions. This lab is protected by a CSRF token and also has a confirmation dialog to protect against Clickjacking
 

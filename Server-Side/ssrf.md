@@ -2,6 +2,10 @@
 
 Get details at [here](https://portswigger.net/web-security/ssrf)
 
+Type of SSRF attack:
+ - Server SSRF Attacks
+ - Back-End SSRF attacks
+
 ---
 
 [lab 1](https://portswigger.net/web-security/ssrf/lab-basic-ssrf-against-localhost)

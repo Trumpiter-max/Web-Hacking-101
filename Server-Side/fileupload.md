@@ -2,6 +2,10 @@
 
 Get details at [here](https://portswigger.net/web-security/file-upload)
 
+Type of file upload vulnerabilities attack:
+ - Malicious Files
+ - Public File Retrieval 
+
 ---
 
 [Lab 1](https://portswigger.net/web-security/file-upload/lab-file-upload-remote-code-execution-via-web-shell-upload)

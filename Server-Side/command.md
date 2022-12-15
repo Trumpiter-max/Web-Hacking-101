@@ -2,13 +2,19 @@
 
 Get detail at [here](https://portswigger.net/web-security/os-command-injection)
 
+Type of OS command injection attack:
+ - Result-Based Command Injection
+ - Blind Command Injection
+  - The Time-Based Technique
+  - File-Based Technique
+
 ---
 
 [Lab 1](https://portswigger.net/web-security/os-command-injection/lab-simple)
 
 Description of this lab: execute the whoami command to determine the name of the current user
 
-Check the source code, we can see in js folder having 2 file:
+Check the source code, we can see in JS folder having 2 files:
 
  - stockCheckPayload.js
     ```js
@@ -48,13 +54,13 @@ Check the source code, we can see in js folder having 2 file:
         }
     ```
 
-Morever input (variable data) which is sent to server has no validate. Using burp suite to see what happen when clicking on button `Check stock`, website will send payload like this `productId=1&storeId=1` to server, and response of server is a number. Try to expand payload with some basic os command injection. The final payload is `productId=1;whoami&storeId=1`, using repeater to send this to server and solved the lab.
+Moreover, input (variable data) which is sent to server has no validate. Using burp suite to see what happen when clicking on button `Check stock`, website will send payload like this `productId=1&storeId=1` to server, and response of server is a number. Try to expand payload with some basic OS command injection. The final payload is `productId=1;whoami&storeId=1`, using repeater to send this to server and solved the lab.
 
 [Lab 2](https://portswigger.net/web-security/os-command-injection/lab-blind-time-delays)
 
 Description of this lab: exploit the blind OS command injection vulnerability to cause a 10 second delay
 
-This lab contains feedback form, using burp suite to inspect when fill in form. After we submit form, website will send payload like this `csrf=QaxMCM25M0zUFiWZNvIOEfUkTjeLK3tm&name=demo&email=demo%40demo.demo&subject=demo&message=demo%0A` to server. Check at code, and we can found this code processing data to server. 
+This lab contains feedback form, using burp suite to inspect when fill in form. After we submit form, website will send payload like this `csrf=QaxMCM25M0zUFiWZNvIOEfUkTjeLK3tm&name=demo&email=demo%40demo.demo&subject=demo&message=demo%0A` to server. Check at code, and we can find this code processing data to server. 
 
 submitFeedback.js
 ```js
